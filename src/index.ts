@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { json } from "body-parser";
 import { config } from 'dotenv'
+import router from "./routes";
 
 const app = express();
 config();
@@ -19,10 +20,7 @@ mongoose.connect(dbUrl, {
   w: "majority",
 });
 
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, World!');
-});
+app.use("/api/v1", router);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
