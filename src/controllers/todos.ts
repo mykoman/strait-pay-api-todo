@@ -1,8 +1,8 @@
 import { RequestHandler } from "express";
 import ApplicationError from "../helpers/error-response";
 import { SuccessResponse } from "../helpers/success-response";
-
-import Todo from "../models/todo";
+import Todo from "../models/todos";
+import { RESPONSE_CODES } from "../helpers/const";
 
 /**
  * @description This creates a todo item
@@ -65,7 +65,7 @@ export const updateTodo: RequestHandler = async (req, res) => {
     });
     return res.json(response);
   } else{
-    throw new ApplicationError(404, "Todo item not found");
+    throw new ApplicationError(RESPONSE_CODES.NOT_FOUND, "Todo item not found");
   }
 };
 
@@ -80,7 +80,7 @@ export const deleteTodo: RequestHandler = async (req, res) => {
   const { id } = req.params;
   const todo = await Todo.findById(id);
   if (!todo) {
-    throw new ApplicationError(400, "Todo item not found");
+    throw new ApplicationError(RESPONSE_CODES.NOT_FOUND, "Todo item not found");
   }
   await Todo.findByIdAndDelete(id);
   const response = new SuccessResponse({message: "Todo successfully deleted"});
