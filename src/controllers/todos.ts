@@ -13,7 +13,7 @@ import Todo from "../models/todo";
  */
 export const createTodo: RequestHandler = async (req, res) => {
   const { text, completed } = req.body;
-  const todo = await Todo.create({ text, completed });
+  const todo = await Todo.create({ text });
 
   const response = new SuccessResponse({
     message: "Todo successfully created",
