@@ -2,7 +2,7 @@ import mongoose, { Document } from 'mongoose';
 
 interface ITodo extends Document {
   text: string;
-  completed: boolean;
+  isCompleted: boolean;
   createdBy: string;
 }
 
@@ -11,7 +11,7 @@ const todoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  completed: {
+  isCompleted: {
     type: Boolean,
     default: false,
   },

@@ -12,7 +12,7 @@ import { RESPONSE_CODES } from "../helpers/const";
  * @returns {Object}
  */
 export const createTodo: RequestHandler = async (req, res) => {
-  const { text, completed } = req.body;
+  const { text } = req.body;
   const todo = await Todo.create({ text });
 
   const response = new SuccessResponse({
@@ -51,11 +51,11 @@ export const getTodos: RequestHandler = async (req, res) => {
  */
 export const updateTodo: RequestHandler = async (req, res) => {
   const { id } = req.params;
-  const { completed, text } = req.body;
+  const { isCompleted, text } = req.body;
 
   const updatedTodo = await Todo.findByIdAndUpdate(
     id,
-    { completed, text },
+    { isCompleted, text },
     { new: true }
   );
   if (updatedTodo) {
