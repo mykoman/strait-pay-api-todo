@@ -19,7 +19,6 @@ export const verifyToken: RequestHandler = (req:AuthRequest, _, next) => {
 
   verify(token, process.env.JWT_SECRET!, (err, user) => {
     if (err) {
-        console.log("!!!!!!!",err);
       return next(new ApplicationError(RESPONSE_CODES.UNAUTHORIZED, 'Invalid token'));
     }
     
