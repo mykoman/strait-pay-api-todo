@@ -7,7 +7,7 @@ import {
   deleteTodo,
 } from "../controllers/todos";
 import asyncWrapper from "../middlewares/async-wrapper";
-import { validateCreateTodo, validateUpdateTodo } from "../validations/auth";
+import { validateCreateTodo, validateUpdateTodo } from "../validations/todo";
 
 const router = Router();
 
