@@ -1,0 +1,16 @@
+{
+  "name": "strait-api",
+  "version": "1.0.0",
+  "description": "CRUD Application with NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Ogbuma",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.11.27",
+    "express": "^4.18.3",
+    "typescript": "^5.4.2"
+  }
+}
