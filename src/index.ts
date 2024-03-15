@@ -4,6 +4,7 @@ import cors from "cors";
 import { json } from "body-parser";
 import { config } from 'dotenv'
 import router from "./routes";
+import errorHandler from './middlewares/error-handler';
 
 const app = express();
 config();
@@ -21,6 +22,7 @@ mongoose.connect(dbUrl, {
 });
 
 app.use("/api/v1", router);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

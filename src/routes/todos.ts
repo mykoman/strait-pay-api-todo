@@ -6,7 +6,7 @@ import {
   updateTodo,
   deleteTodo,
 } from "../controllers/todos";
-import asyncWrapper from "../middlewares/asyncWrapper";
+import asyncWrapper from "../middlewares/async-wrapper";
 
 const router = Router();
 
