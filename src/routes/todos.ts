@@ -7,14 +7,15 @@ import {
   deleteTodo,
 } from "../controllers/todos";
 import asyncWrapper from "../middlewares/async-wrapper";
+import { validateCreateTodo, validateUpdateTodo } from "../validations/auth";
 
 const router = Router();
 
-router.post("/", asyncWrapper(createTodo));
+router.post("/", validateCreateTodo, asyncWrapper(createTodo));
 
 router.get("/", asyncWrapper(getTodos));
 
-router.patch("/:id", asyncWrapper(updateTodo));
+router.patch("/:id", validateUpdateTodo, asyncWrapper(updateTodo));
 
 router.delete("/:id", asyncWrapper(deleteTodo));
 

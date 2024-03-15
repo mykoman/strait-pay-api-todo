@@ -8,11 +8,6 @@ import { RESPONSE_CODES } from "../helpers/const";
 
 export const register: RequestHandler = async (req, res) => {
 
-  // Check for validation errors
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    throw new ApplicationError(400, errors.array().map(err => err.msg).join(', '));
-  }
   const { email, firstName, lastName } = req.body as {
     email: string;
     firstName: string;
