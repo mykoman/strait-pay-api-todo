@@ -30,15 +30,26 @@ export const createTodo: RequestHandler = async (req, res) => {
  * @returns {Object}
  */
 export const getTodos: RequestHandler = async (req, res) => {
-  const { skip = 0, limit = 10, filter } = req.query;
-  const todos = await Todo.find()
+  const { skip = 0, limit = 10, isCompleted } = req.query;
+    
+  // Building filter based on query parameters
+  const filter: { isCompleted?: boolean } = {};
+  if (isCompleted && (isCompleted === '1' || isCompleted === '0')) {
+    filter.isCompleted = isCompleted === '1';
+  }
+
+  const queryBuilder = Todo.find(filter)
     .limit(Number(limit))
     .skip(Number(skip))
-    .sort("-updatedAt");
+    .sort({ createdAt: -1 });
+
+  const todos = await queryBuilder;
+
   const response = new SuccessResponse({
-    message: "Todos successfully fetched",
+    message: 'Todos successfully fetched',
     data: todos,
   });
+  
   return res.json(response);
 };
 
@@ -58,15 +69,15 @@ export const updateTodo: RequestHandler = async (req, res) => {
     { isCompleted, text },
     { new: true }
   );
-  if (updatedTodo) {
-    const response = new SuccessResponse({
-      message: "Todos successfully updated",
-      data: updatedTodo,
-    });
-    return res.json(response);
-  } else{
+  if (!updatedTodo) {
     throw new ApplicationError(RESPONSE_CODES.NOT_FOUND, "Todo item not found");
   }
+
+  const response = new SuccessResponse({
+    message: "Todos successfully updated",
+    data: updatedTodo,
+  });
+  return res.json(response);
 };
 
 /**
@@ -83,6 +94,8 @@ export const deleteTodo: RequestHandler = async (req, res) => {
     throw new ApplicationError(RESPONSE_CODES.NOT_FOUND, "Todo item not found");
   }
   await Todo.findByIdAndDelete(id);
-  const response = new SuccessResponse({message: "Todo successfully deleted"});
+  const response = new SuccessResponse({
+    message: "Todo successfully deleted",
+  });
   return res.json(response);
 };

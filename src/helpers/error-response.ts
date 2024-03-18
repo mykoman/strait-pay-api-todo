@@ -3,16 +3,14 @@
  */
 class ApplicationError extends Error {
     status: number
-    message: string
     errors: object
     constructor(
         status = 500,
         message = 'Sorry, an error occurred',
         errors = {}
     ) {
-        super()
+        super(message)
         this.status = status
-        this.message = message
         this.errors = errors
     }
 }

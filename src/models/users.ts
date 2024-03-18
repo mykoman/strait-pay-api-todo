@@ -22,16 +22,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       select: false
-    },
-    createdBy: {
-      type: "ObjectId",
-      ref: "Users",
-      required: false,
-    },
-    updatedBy: {
-      type: String,
-      required: false,
-    },
+    }
   },
   {
     timestamps: true,

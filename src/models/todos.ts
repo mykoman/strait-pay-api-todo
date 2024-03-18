@@ -15,10 +15,11 @@ const todoSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  createdBy: {
-    type: String,
+  userId: {
+    type: "ObjectId",
+    ref: "Users",
     required: false,
-  },
+  }
 }, {
   timestamps: true
 });
