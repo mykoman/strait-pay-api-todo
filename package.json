@@ -48,5 +48,8 @@
     "lint-staged": "^15.2.2",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2"
+  },
+  "engines": {
+    "node": ">=21.0.0"
   }
 }
