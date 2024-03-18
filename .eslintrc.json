@@ -9,5 +9,32 @@
         "sourceType": "module"
     },
     "rules": {
-    }
+    "no-var": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": "error",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "no-console": "error",
+    "import/export": "error",
+    "import/first": "error",
+    "import/named": "error",
+    "import/namespace": "error",
+    "import/newline-after-import": "error",
+    "import/no-commonjs": [
+      "error",
+      {
+        "allowRequire": false,
+        "allowConditionalRequire": false,
+        "allowPrimitiveModules": false
+      }
+    ],
+    "import/no-dynamic-require": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-restricted-paths": "error",
+    "import/no-self-import": "error",
+    "import/no-unassigned-import": "error",
+    "import/no-unresolved": "error"
+  },
 }
